@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/basic.xhtml">
+		<ui:define name="title">AjaxCore</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<div class="form-group">
+					<p:outputLabel for="welcomeMessage" value="Message: " />
+					<p:inputText id="welcomeMessage" value="#{ajaxCore.welcomeMessage}" 
+						styleClass="form-control" >
+					<p:ajax
+						async="false"
+						delay="2000"
+						event="keyup"   
+						global="true"
+						immediate="true"
+						partialSubmit="true"
+						update="result"								
+					
+					></p:ajax>	
+					</p:inputText>
+					<p:message for="welcomeMessage" />
+				</div>
+				<h3>
+					<h:outputText id="result" value="Hello: #{ajaxCore.welcomeMessage}" />
+				</h3>
+				<p:commandButton type="button" value="Not submit"
+					styleClass="btn btn-default" update="result"/>
+				<p:commandButton type="submit" value="Submit"
+					styleClass="btn btn-primary" update="result"/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
